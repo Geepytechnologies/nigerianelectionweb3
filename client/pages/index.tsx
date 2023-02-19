@@ -6,6 +6,7 @@ import Layout from "@/components/Layout";
 import useSound from "use-sound";
 import { useEffect } from "react";
 import Hero from "@/components/Hero";
+import Card from "@/components/Card";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,8 +30,10 @@ export default function Home() {
         <link rel="icon" href="/circular-min.png" />
       </Head>
       <Layout>
-        <Hero />
-        {/* <main className="min-h-screen"></main> */}
+        <main className="bg-[#f1eff1] py-5">
+          <Card />
+          <Hero />
+        </main>
       </Layout>
     </>
   );

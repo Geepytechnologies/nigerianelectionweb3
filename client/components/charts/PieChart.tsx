@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
+import { TotalRevenueOptions, TotalRevenueSeries } from "./chartconfig";
 // import ReactApexChart from "react-apexcharts";
 
 type Props = {
@@ -30,6 +31,14 @@ const PieChart = ({ title, value, series, colors }: Props) => {
           series={series}
           type="donut"
           width="120px"
+        />
+      )}
+      {typeof window !== "undefined" && (
+        <ReactApexChart
+          series={TotalRevenueSeries}
+          type="bar"
+          height={310}
+          options={TotalRevenueOptions}
         />
       )}
     </div>
