@@ -1,12 +1,9 @@
 import { ApexOptions } from "apexcharts";
 
-export const TotalRevenueSeries = [
+export const CandidateSeries = [
   {
     name: "Candidate",
-    data: [
-      183, 124, 115, 85, 143, 143, 96, 183, 124, 115, 85, 143, 143, 96, 183,
-      124, 115, 85,
-    ],
+    data: [183, 124, 115],
   },
   //   {
   //     name: "Running Month",
@@ -14,7 +11,7 @@ export const TotalRevenueSeries = [
   //   },
 ];
 
-export const TotalRevenueOptions: ApexOptions = {
+export const CandidateOptions: ApexOptions = {
   chart: {
     type: "bar",
     toolbar: {
@@ -40,26 +37,7 @@ export const TotalRevenueOptions: ApexOptions = {
     width: 4,
   },
   xaxis: {
-    categories: [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15",
-      "16",
-      "17",
-      "18",
-    ],
+    categories: ["1", "2", "3"],
     title: {
       text: "Candidate ID's",
     },

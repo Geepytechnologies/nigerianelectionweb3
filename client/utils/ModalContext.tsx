@@ -20,7 +20,7 @@ interface initial {
   dispatch: any;
 }
 const INITIAL_STATE: initial = {
-  modal: false,
+  modal: true,
   dispatch: () => {},
 };
 

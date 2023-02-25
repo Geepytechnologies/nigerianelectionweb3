@@ -1,16 +1,18 @@
 import React from "react";
 import PieChart from "./charts/PieChart";
 
-type Props = {};
+type Props = {
+  data: any;
+};
 
-const Chart = (props: Props) => {
+const Chart = ({ data }: Props) => {
   return (
-    <div className="">
+    <div className="my-4">
       <PieChart
-        title=""
-        value={500}
-        series={[80, 20]}
-        colors={["#275be8", "#c4e8ef"]}
+        data={data}
+        title="Win Probability"
+        series={[70, 20, 10]}
+        colors={["#275be8", "#47b4ca", "#c4e8ef"]}
       />
     </div>
   );

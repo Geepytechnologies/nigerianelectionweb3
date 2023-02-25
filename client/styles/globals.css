@@ -4,5 +4,5 @@
 
 @font-face {
   font-family: myfirstfont;
-  src: url(/client/public/NeueMontreal-Bold.otf);
+  src: url("/NeueMontreal-Bold.otf");
 }

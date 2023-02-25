@@ -4,8 +4,10 @@ pragma solidity ^0.8.9;
 // Uncomment this line to use console.log
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract NigerianElection {
+    IERC20 private myToken;
     using Counters for Counters.Counter;
 
     Counters.Counter public _votersId;
@@ -20,6 +22,7 @@ contract NigerianElection {
         uint256 voteCount;
         address _address;
         string politicalParty;
+        string partylogo;
     }
 
     event createCandidate(
@@ -29,7 +32,8 @@ contract NigerianElection {
         string image,
         uint256 voteCount,
         address _address,
-        string politicalParty
+        string politicalParty,
+        string partylogo
     );
 
     address[] public candidateAddress;
@@ -61,14 +65,18 @@ contract NigerianElection {
 
     constructor() {
         inecChairman = msg.sender;
+        myToken = IERC20(0x128d66bCbeeBa75071E586f4722F8c64Db9115B7);
     }
+
+    function invest() public payable {}
 
     function assignCandidate(
         address _address,
         string memory _age,
         string memory _name,
         string memory _image,
-        string memory _politicalParty
+        string memory _politicalParty,
+        string memory _partylogo
     ) public {
         require(
             inecChairman == msg.sender,
@@ -86,6 +94,7 @@ contract NigerianElection {
         candidate.politicalParty = _politicalParty;
         candidate.voteCount = 0;
         candidate._address = _address;
+        candidate.partylogo = _partylogo;
 
         candidateAddress.push(_address);
 
@@ -96,7 +105,8 @@ contract NigerianElection {
             _image,
             candidate.voteCount,
             _address,
-            _politicalParty
+            _politicalParty,
+            _partylogo
         );
     }
 
@@ -120,7 +130,8 @@ contract NigerianElection {
             string memory,
             uint256,
             string memory,
-            address
+            address,
+            string memory
         )
     {
         return (
@@ -130,7 +141,8 @@ contract NigerianElection {
             candidates[_address].image,
             candidates[_address].voteCount,
             candidates[_address].politicalParty,
-            candidates[_address]._address
+            candidates[_address]._address,
+            candidates[_address].partylogo
         );
     }
 
@@ -169,6 +181,14 @@ contract NigerianElection {
             }
         }
         return false;
+    }
+
+    function transferTokens(
+        address from,
+        address recipient,
+        uint256 amount
+    ) public {
+        myToken.transferFrom(from, recipient, amount);
     }
 
     function vote(

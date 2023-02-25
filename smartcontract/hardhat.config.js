@@ -8,6 +8,7 @@ const {
   POLYGON_PRIVATE_KEY,
   GOERLI_API_URL,
   GOERLI_PRIVATE_KEY,
+  POLYGONSCAN,
 } = process.env;
 
 module.exports = {
@@ -17,9 +18,12 @@ module.exports = {
       url: `${GOERLI_API_URL}`,
       accounts: [GOERLI_PRIVATE_KEY],
     },
-    polygon_mumbai: {
+    polygon: {
       url: POLYGON_API_URL,
       accounts: [`0x${POLYGON_PRIVATE_KEY}`],
     },
+  },
+  etherscan: {
+    apiKey: POLYGONSCAN,
   },
 };

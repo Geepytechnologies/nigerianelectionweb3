@@ -7,4 +7,8 @@ contract Token is ERC20 {
     constructor(uint256 initialSupply) ERC20("Geepy", "GPY") {
         _mint(msg.sender, initialSupply);
     }
+
+    function transfertowallet(address recipient, uint256 amount) public {
+        transfer(recipient, amount);
+    }
 }

@@ -2,10 +2,15 @@ import React, { useRef, useContext } from "react";
 import { motion } from "framer-motion";
 import { ModalContext } from "@/utils/ModalContext";
 import { hide } from "@/utils/ModalActions";
+import useSound from "use-sound";
 
-type Props = {};
+type Props = {
+  data: any;
+};
 
-const AnthemModal = (props: Props) => {
+const AnthemModal = ({ data }: Props) => {
+  const [playOn] = useSound("/anthem.mp3", { volume: 1 });
+  console.log({ func: data });
   const { dispatch } = useContext(ModalContext);
   const outerDiv = useRef<HTMLDivElement>(null);
   const innerDiv = useRef<HTMLDivElement>(null);
@@ -24,12 +29,19 @@ const AnthemModal = (props: Props) => {
           event.clientY > innerBounds.bottom)
       ) {
         dispatch(hide());
+        playOn();
+        console.log("clicked");
       }
     }
+  };
+  const handlemodal = () => {
+    // dispatch(hide());
+    console.log("clicked");
   };
   return (
     <div
       onClick={(event: any) => handleClick(event)}
+      //   onClick={handlemodal}
       ref={outerDiv}
       className="bg-[rgba(0,0,0,0.5)] w-full h-screen fixed flex items-center justify-center z-[500] overflow-hidden "
     >

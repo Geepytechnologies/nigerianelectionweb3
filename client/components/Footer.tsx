@@ -7,17 +7,21 @@ type Props = {};
 const Footer = (props: Props) => {
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row">
-        <div>
+      <div className="flex flex-row w-full">
+        <div className="relative w-[40%]">
           <img
             src="/landscape.jpg"
             alt="The city of Abuja"
-            className="h-[350px]"
+            className="h-[300px] object-cover"
           />
+          <div className="absolute top-0 bg-[rgba(0,0,0,0.4)] w-full h-full "></div>
         </div>
-        <div className="bg-[#01945a] flex-1 text-white">
-          <h2>Nigerian Election</h2>
-          <h3>
+        <div className="bg-[#01945a]  text-white">
+          <Link href="/" className="flex gap-1 p-2 items-center">
+            <img src="/circular-min.png" alt="logo" className="w-[30px]" />
+            <p className="font-[600] font-popp">NigerianElection</p>
+          </Link>
+          <h3 className="font-mont font-[500]">
             Our Country is in our hands. Let&apos;s vote for a better Government
           </h3>
         </div>
