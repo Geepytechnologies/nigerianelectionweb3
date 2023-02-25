@@ -2,11 +2,11 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ApexOptions } from "apexcharts";
-// const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-//   ssr: false,
-// });
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+ssr: false,
+});
 
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
 
 type Props = {
   title: string;
