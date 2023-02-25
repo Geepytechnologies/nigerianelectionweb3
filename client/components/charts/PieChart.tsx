@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ApexOptions } from "apexcharts";
-// const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-//   ssr: false,
-// });
+import { useContract, useProvider } from "wagmi";
+import { contractaddress } from "@/pages";
+import { ABI } from "@/abi/election";
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
 
 type Props = {
   title: string;
@@ -16,7 +19,6 @@ type Props = {
 };
 
 const PieChart = ({ title, series, colors, data }: Props) => {
-  console.log({ mydata: data });
   const CandidateSeries = [
     {
       name: "Candidate",
@@ -79,7 +81,22 @@ const PieChart = ({ title, series, colors, data }: Props) => {
       },
     },
   };
-
+  const [voters, setVoters] = useState();
+  const provider = useProvider();
+  const contract = useContract({
+    address: contractaddress,
+    abi: ABI,
+    signerOrProvider: provider,
+  });
+  const getvoters = async () => {
+    try {
+      const res = await contract?.getNumberOfVoters();
+      setVoters(res.toString());
+    } catch (err) {}
+  };
+  useEffect(() => {
+    getvoters();
+  });
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -90,6 +107,7 @@ const PieChart = ({ title, series, colors, data }: Props) => {
       <p className="font-[600] font-mont text-[20px] tracking-[2px]">
         Election polls
       </p>
+      <p>Current number of Voters: {voters && voters}</p>
       <div className="flex">
         <p className="text-[#808191] text-[14px]">{title}</p>
       </div>

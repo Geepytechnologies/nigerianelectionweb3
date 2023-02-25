@@ -15,15 +15,6 @@ type Props = {};
 const Hero = (props: Props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const swiperRef = useRef(null);
-
-  // useEffect(() => {
-  //     const swiper = swiperRef.current?.swiper;
-  //     if (swiper) {
-  //       swiper.on("slideChange", () => {
-  //         setCurrentSlide(swiper.realIndex);
-  //       });
-  //     }
-  //   }, [swiperRef]);
   return (
     <Swiper
       ref={swiperRef}
@@ -34,16 +25,13 @@ const Hero = (props: Props) => {
         delay: 4000,
         disableOnInteraction: false,
       }}
-      //   pagination={{
-      //     clickable: true,
-      //   }}
       navigation={false}
       modules={[EffectFade, Autoplay, Navigation]}
       className="mySwiper"
     >
       <SwiperSlide>
         {({ isActive }) => (
-          <div className="relative h-[400px] w-full">
+          <div className="relative h-[400px] md:h-[500px] w-full">
             <motion.img src="/dubai.jpg" alt="" className="h-full w-full" />
             <div className="bg-[rgba(0,0,0,0.6)] absolute top-0 w-full h-full"></div>
             <div className="absolute top-0 w-full h-full flex flex-col items-center justify-center">
@@ -97,7 +85,7 @@ const Hero = (props: Props) => {
       </SwiperSlide>
       <SwiperSlide>
         {({ isActive }) => (
-          <div className="relative h-[400px] w-full">
+          <div className="relative h-[400px] md:h-[500px] w-full">
             <motion.img src="/army.jpg" alt="" className="h-full w-full" />
             <div className="bg-[rgba(0,0,0,0.6)] absolute top-0 w-full h-full"></div>
             <div className="absolute top-0 w-full h-full flex flex-col items-center justify-center">
@@ -151,7 +139,7 @@ const Hero = (props: Props) => {
       </SwiperSlide>
       <SwiperSlide>
         {({ isActive }) => (
-          <div className="relative h-[400px] w-full">
+          <div className="relative h-[400px] md:h-[500px] w-full">
             <motion.img src="/take.jpg" alt="" className="h-full w-full" />
             <div className="bg-[rgba(0,0,0,0.6)] absolute top-0 w-full h-full"></div>
             <div className="absolute top-0 w-full h-full flex flex-col items-center justify-center">

@@ -3,15 +3,18 @@ import { Header } from "@/components/Header";
 import Layout from "@/components/Layout";
 import { basicSchema } from "@/schemas";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { CSSProperties, useState } from "react";
 import { useAccount, useContract, useProvider, useSigner } from "wagmi";
 import { contractaddress } from "..";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
+import { BeatLoader } from "react-spinners";
 
 type Props = {};
 
 const Index = (props: Props) => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { address, isConnecting, isConnected, isDisconnected } = useAccount();
   const provider = useProvider();
@@ -32,16 +35,36 @@ const Index = (props: Props) => {
       onSubmit: () => register(),
     });
   const register = async () => {
+    setLoading(true);
     const { name: username, age, pvc } = values;
     if (isConnected) {
       const res = await contract?.RegisterVoter(address, age, username, pvc);
-      console.log(res);
+      if (res) {
+        setLoading(false);
+        toast.success("Registration successful");
+        router.push("/");
+      }
     } else {
+      setLoading(false);
       toast.warning("Please Click on Get started to connect wallet");
     }
   };
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
   const Loader = () => {
-    return <img src="/circular.png" alt="loader" />;
+    return (
+      <BeatLoader
+        color={"white"}
+        loading={loading}
+        cssOverride={override}
+        size={20}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    );
   };
   return (
     <>
@@ -71,30 +94,30 @@ const Index = (props: Props) => {
               autoComplete="off"
               className="flex gap-4 p-3 flex-col w-full "
             >
-              <label className="text-white">Name</label>
-              <input
-                type="text"
-                onBlur={handleBlur}
-                name="name"
-                id="name"
-                value={values.name}
-                onChange={handleChange}
-                placeholder="Matt"
-                className={
-                  errors.name && touched.name
-                    ? "p-3 outline-[#c10622] border border-[#c10622] rounded-lg outline-2"
-                    : "outline-none p-3 border border-[green] rounded-lg"
-                }
-              />
-              {errors.name && touched.name && (
-                <span className="text-[#c10622] font-[600] font-pop text-[14px]">
-                  {errors.name}
-                </span>
-              )}
-              {/* <div className='flex flex-col'>
-    </div> */}
               <div className="flex flex-col">
-                <label className="text-white">Age</label>
+                <label className="text-gray-500">Name</label>
+                <input
+                  type="text"
+                  onBlur={handleBlur}
+                  name="name"
+                  id="name"
+                  value={values.name}
+                  onChange={handleChange}
+                  placeholder="Geepy"
+                  className={
+                    errors.name && touched.name
+                      ? "p-3 outline-[#c10622] border border-[#c10622] rounded-lg outline-2"
+                      : "outline-none p-3 border border-[green] rounded-lg"
+                  }
+                />
+                {errors.name && touched.name && (
+                  <span className="text-[#c10622] font-[600] font-pop text-[14px]">
+                    {errors.name}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col">
+                <label className="text-gray-500">Age</label>
                 <input
                   type="text"
                   onBlur={handleBlur}
@@ -115,13 +138,13 @@ const Index = (props: Props) => {
                 )}
               </div>
               <div className="flex flex-col">
-                <label className="text-white">PVC Number</label>
+                <label className="text-gray-500">VIN</label>
                 <input
                   id="pvc"
                   onBlur={handleBlur}
                   value={values.pvc}
                   onChange={handleChange}
-                  placeholder="asder"
+                  placeholder="ZQ00 1ZZ1 0X22 3333 2003"
                   className={
                     errors.pvc && touched.pvc
                       ? "p-3 outline-[#c10622] border border-[#c10622] rounded-lg outline-2"
@@ -137,7 +160,7 @@ const Index = (props: Props) => {
               {!loading ? (
                 <button
                   type="submit"
-                  className="bg-[#d6c18a] py-3 text-[25px]  text-white font-[600]"
+                  className="bg-[#d6c18a] py-3 text-[25px] rounded-lg  text-white font-[600]"
                 >
                   Register
                 </button>
