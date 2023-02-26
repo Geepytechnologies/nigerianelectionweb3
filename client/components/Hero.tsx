@@ -42,7 +42,7 @@ const Hero = (props: Props) => {
                   show: { x: 0 },
                   hide: { x: -400 },
                 }}
-                className="flex w-[60%]"
+                className="flex w-[60%] lg:w-[40%]"
               >
                 <motion.div
                   initial={{ y: -10 }}
@@ -96,7 +96,7 @@ const Hero = (props: Props) => {
                   show: { x: 0 },
                   hide: { x: 400 },
                 }}
-                className="flex w-[60%]"
+                className="flex w-[60%] lg:w-[40%]"
               >
                 <motion.div
                   initial={{ y: -10 }}
@@ -150,7 +150,7 @@ const Hero = (props: Props) => {
                   show: { y: 0 },
                   hide: { y: -400 },
                 }}
-                className="flex w-[60%]"
+                className="flex w-[60%] lg:w-[40%]"
               >
                 <motion.div
                   initial={{ y: -10 }}

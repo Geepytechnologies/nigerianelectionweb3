@@ -1,0 +1,7 @@
+# my contract for gpy token 0x128d66bCbeeBa75071E586f4722F8c64Db9115B7
+
+# my contract for election 0x857c7FF5Be4a640B7E27a6B0A6f377Ba497068b6
+
+# contract verification npx hardhat verify --contract contracts/Token.sol:Token 0x128d66bCbeeBa75071E586f4722F8c64Db9115B7 1000000 --network polygon
+
+# contract verification npx hardhat verify --contract contracts/NigerianElection.sol:NigerianElection 0x857c7FF5Be4a640B7E27a6B0A6f377Ba497068b6 --network polygon

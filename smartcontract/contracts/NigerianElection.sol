@@ -20,7 +20,7 @@ contract NigerianElection {
         string name;
         string image;
         uint256 voteCount;
-        address _address;
+        address candidateAddr;
         string politicalParty;
         string partylogo;
     }
@@ -31,7 +31,7 @@ contract NigerianElection {
         string name,
         string image,
         uint256 voteCount,
-        address _address,
+        address candidateAddr,
         string politicalParty,
         string partylogo
     );
@@ -93,7 +93,7 @@ contract NigerianElection {
         candidate.image = _image;
         candidate.politicalParty = _politicalParty;
         candidate.voteCount = 0;
-        candidate._address = _address;
+        candidate.candidateAddr = _address;
         candidate.partylogo = _partylogo;
 
         candidateAddress.push(_address);
@@ -120,30 +120,8 @@ contract NigerianElection {
 
     function getcandidateInfo(
         address _address
-    )
-        public
-        view
-        returns (
-            uint256,
-            string memory,
-            string memory,
-            string memory,
-            uint256,
-            string memory,
-            address,
-            string memory
-        )
-    {
-        return (
-            candidates[_address].candidateId,
-            candidates[_address].age,
-            candidates[_address].name,
-            candidates[_address].image,
-            candidates[_address].voteCount,
-            candidates[_address].politicalParty,
-            candidates[_address]._address,
-            candidates[_address].partylogo
-        );
+    ) public view returns (Candidate memory) {
+        return (candidates[_address]);
     }
 
     //create voter
@@ -153,10 +131,6 @@ contract NigerianElection {
         string memory _name,
         string memory _pvcNumber
     ) public {
-        require(
-            inecChairman == msg.sender,
-            "only the Inec Chairman can register a voter"
-        );
         _votersId.increment();
 
         uint256 id = _votersId.current();
@@ -222,30 +196,8 @@ contract NigerianElection {
         return votersAddress;
     }
 
-    function getVoterInfo(
-        address _address
-    )
-        public
-        view
-        returns (
-            uint256,
-            string memory,
-            string memory,
-            string memory,
-            address,
-            bool,
-            uint256
-        )
-    {
-        return (
-            voters[_address].voterId,
-            voters[_address].voterName,
-            voters[_address].voterAge,
-            voters[_address].pvcNumber,
-            voters[_address].voterAddress,
-            voters[_address].voted,
-            voters[_address].vote
-        );
+    function getVoterInfo(address _address) public view returns (Voter memory) {
+        return (voters[_address]);
     }
 
     function findCandidateWithMostVotes() public view returns (address) {
