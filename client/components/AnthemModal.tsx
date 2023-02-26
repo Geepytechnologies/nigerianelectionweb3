@@ -11,7 +11,7 @@ type Props = {
 
 const AnthemModal = ({ data }: Props) => {
   const [loading, setLoading] = useState(false);
-  const [playOn, { stop, pause, duration }] = useSound("/national-anthem.mp3", {
+  const [play, { stop, pause, duration }] = useSound("/national-anthem.mp3", {
     volume: 1,
   });
   const { dispatch } = useContext(ModalContext);
@@ -55,7 +55,7 @@ const AnthemModal = ({ data }: Props) => {
   };
   const handlePlayanthem = () => {
     setLoading(true);
-    playOn();
+    play();
   };
   const handleStop = () => {
     setLoading(false);

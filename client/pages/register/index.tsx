@@ -88,7 +88,7 @@ const Index = (props: Props) => {
             <p className="text-[30px] py-5 text-center tracking-[2px]">
               Register as a Voter
             </p>
-            <img src="/vote_keyboard.jpg" alt="" />
+            <img src="/vote_keyboard.jpg" alt="" className="w-full" />
             <form
               onSubmit={handleSubmit}
               autoComplete="off"

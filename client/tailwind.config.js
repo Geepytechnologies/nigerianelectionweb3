@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
@@ -9,6 +10,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      d1: "280px",
+      d2: "350px",
+      d3: "400px",
+      ...defaultTheme.screens,
+    },
     extend: {},
     fontFamily: {
       mont: ["Montserrat", "sans-serif"],

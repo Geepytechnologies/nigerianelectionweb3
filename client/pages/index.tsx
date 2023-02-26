@@ -14,9 +14,10 @@ import { useContract, useSigner, useAccount } from "wagmi";
 import { ABI } from "../abi/election";
 import { AppContext, setCandidates } from "@/utils/AppContext";
 import { Header } from "@/components/Header";
+import Regbutton from "@/components/Regbutton";
 
 const inter = Inter({ subsets: ["latin"] });
-export const contractaddress = "0x857c7FF5Be4a640B7E27a6B0A6f377Ba497068b6";
+export const contractaddress = "0xCe8a0c6d3Ee92939171481Bc335c9B3789728fb4";
 
 type props = {};
 
@@ -59,6 +60,7 @@ export default function Home() {
       <Layout>
         <main className="bg-[#f1eff1]">
           <Hero />
+          <Regbutton />
           <Card data={candidateDetails} />
           <Chart data={candidateDetails} />
         </main>
