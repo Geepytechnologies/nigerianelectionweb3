@@ -23,9 +23,9 @@ const PieChart = ({ title, series, colors, data }: Props) => {
     {
       name: "Candidate",
       data: [
-        data && data[0][4].toString(),
-        data && data[1][4].toString(),
-        data && data[2][4].toString(),
+        data && data?.[0]?.[4].toString(),
+        data && data?.[1]?.[4].toString(),
+        data && data?.[2]?.[4].toString(),
       ],
     },
   ];
@@ -127,15 +127,15 @@ const PieChart = ({ title, series, colors, data }: Props) => {
       <div className="flex flex-row gap-3 items-center justify-center w-full">
         <div className="flex gap-2 items-center">
           <div className="bg-[#275be8] w-[15px] h-[15px]"></div>
-          <p>- {data && data[0][2]}</p>
+          <p>- {data && data?.[0]?.[2]}</p>
         </div>
         <div className="flex gap-2 items-center">
           <div className="bg-[#47b4ca] w-[15px] h-[15px]"></div>
-          <p>- {data && data[1][2]}</p>
+          <p>- {data && data?.[1]?.[2]}</p>
         </div>
         <div className="flex gap-2 items-center">
           <div className="bg-[#c4e8ef] w-[15px] h-[15px]"></div>
-          <p>- {data && data[2][2]}</p>
+          <p>- {data && data?.[2]?.[2]}</p>
         </div>
       </div>
       {typeof window !== "undefined" && (
