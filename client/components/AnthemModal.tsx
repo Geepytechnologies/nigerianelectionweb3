@@ -86,14 +86,14 @@ const AnthemModal = ({ data }: Props) => {
         </p>
         <div className="text-white pl-3 text-[20px] font-[600] flex w-full items-center justify-center mt-6 gap-3">
           <button
-            onClick={handleStop}
+            onClick={() => handleStop()}
             className="bg-[#c10622] border-2 shadow-xl border-white py-3 px-3 md:p-5 rounded-md"
           >
             Cancel
           </button>
           {!loading ? (
             <button
-              onClick={handlePlayanthem}
+              onClick={() => handlePlayanthem()}
               className="bg-[#d6c18a] border-2 shadow-xl border-white py-3 px-3 md:p-5 rounded-md"
             >
               Proceed

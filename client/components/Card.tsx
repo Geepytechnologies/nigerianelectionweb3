@@ -29,7 +29,6 @@ const Card = ({ data }: Props) => {
     setLoading(true);
     try {
       const res = await contract?.vote(address, id);
-      console.log({ response: res });
       setLoading(false);
       toast.success("Your Vote has been Registered!!!");
     } catch (err: any) {
@@ -51,7 +50,7 @@ const Card = ({ data }: Props) => {
   const Loader = () => {
     return (
       <BeatLoader
-        color={"white"}
+        color={"#01945a"}
         loading={loading}
         cssOverride={override}
         size={20}
@@ -82,31 +81,36 @@ const Card = ({ data }: Props) => {
               className="flex flex-col h-[auto] py-4 rounded-br-[20px] min-w-[350px] shadow-2xl bg-[white] overflow-hidden"
             >
               <div className="font-[600] my-2 font-pop p-2 tracking-wide ">
-                {item[5]}
+                {item.politicalParty + " " + "(" + item.partylogo + ")"}
               </div>
               <img
-                src={item[3]}
+                src={item.image}
                 alt="candidate"
                 className="hover:scale-105 h-[300px] my-3 object-cover object-center transition-all duration-500 ease-in-out cursor-pointer"
               />
               <p className="font-pop font-[600] pl-2 text-[25px] tracking-[1px] ">
-                {item[2]}
+                {item.name}
               </p>
               <p className="font-mont font-[500] pl-2">
-                CandidateID: {item[0].toString()}
+                CandidateID: {item.candidateId.toString()}
               </p>
               <p className="font-mont font-[500] pl-2">
-                Address: {item[6].slice(0, 9)}...
+                Address: {item.candidateAddr.slice(0, 9)}...
               </p>
               <p className="font-mont font-[500] pl-2">
-                Votes: {item[4].toString()}
+                Votes: {item.voteCount.toString()}
               </p>
               {!loading ? (
                 isConnected && (
                   <div className="flex items-center justify-center my-3 hover:scale-105">
                     <button
                       className="bg-[#01945a] flex items-center text-[25px] font-[600]  justify-center p-3 w-[90%] gap-2 text-white"
-                      onClick={() => handleVote(item[6], item[0].toString())}
+                      onClick={() =>
+                        handleVote(
+                          item.candidateAddr,
+                          item.candidateId.toString()
+                        )
+                      }
                     >
                       Vote
                       <AiOutlineCheck />

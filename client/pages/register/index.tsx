@@ -57,7 +57,7 @@ const Index = (props: Props) => {
   const Loader = () => {
     return (
       <BeatLoader
-        color={"white"}
+        color={"#01945a"}
         loading={loading}
         cssOverride={override}
         size={20}
