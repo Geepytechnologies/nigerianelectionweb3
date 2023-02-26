@@ -5,11 +5,9 @@ import { hide } from "@/utils/ModalActions";
 import useSound from "use-sound";
 import { ScaleLoader } from "react-spinners";
 
-type Props = {
-  data: any;
-};
+type Props = {};
 
-const AnthemModal = ({ data }: Props) => {
+const AnthemModal = (props: Props) => {
   const [loading, setLoading] = useState(false);
   const [play, { stop, pause, duration }] = useSound("/national-anthem.mp3", {
     volume: 1,

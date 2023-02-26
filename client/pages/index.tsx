@@ -36,7 +36,6 @@ export default function Home() {
     signerOrProvider: provider,
   });
 
-  const [playOn] = useSound("/anthem.mp3", { volume: 1 });
   const { modal } = useContext(ModalContext);
   const { candidates, dispatch: set } = useContext(AppContext);
   const getCandidates = async () => {
@@ -56,7 +55,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      {modal && <AnthemModal data={playOn} />}
+      {modal && <AnthemModal />}
       <Layout>
         <main className="bg-[#f1eff1]">
           <Hero />
