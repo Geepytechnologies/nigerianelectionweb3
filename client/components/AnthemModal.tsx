@@ -4,6 +4,8 @@ import { ModalContext } from "@/utils/ModalContext";
 import { hide } from "@/utils/ModalActions";
 import useSound from "use-sound";
 import { ScaleLoader } from "react-spinners";
+import Link from "next/link";
+import { BiSpreadsheet } from "react-icons/bi";
 
 type Props = {};
 
@@ -99,6 +101,12 @@ const AnthemModal = (props: Props) => {
           ) : (
             <Loader />
           )}
+        </div>
+        <div className="flex gap-1 text-white mt-3 items-center justify-center">
+          <BiSpreadsheet className="text-[20px]" />
+          <Link href={"/docs"} className="text-white underline font-[600]">
+            Read the Docs
+          </Link>
         </div>
       </motion.div>
     </div>

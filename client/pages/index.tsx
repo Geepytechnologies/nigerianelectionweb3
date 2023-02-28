@@ -36,7 +36,7 @@ export default function Home() {
     signerOrProvider: provider,
   });
 
-  const { modal } = useContext(ModalContext);
+  const { modal, dispatch } = useContext(ModalContext);
   const { candidates, dispatch: set } = useContext(AppContext);
   const getCandidates = async () => {
     const candidateAddress = await contract?.getCandidates();
@@ -51,6 +51,11 @@ export default function Home() {
   };
   useEffect(() => {
     getCandidates();
+  }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(show());
+    }, 8000);
   }, []);
   return (
     <>
